@@ -76,3 +76,15 @@ Copyright 2014-2019 Mercari, Inc.
 
 
 Licensed under the MIT License.
+
+## memo
+```shell
+openssl pkcs12 -clcerts -nokeys -out push_cert.pem -in push_cert.p12
+openssl pkcs12 -nocerts -out push_key.pem -in push_cert.p12 -nodes
+```
+でpemキーを作る。(-nodesでパスフレーズをスキップ、p12をキーチェーンから作る時に空文字でパスフレーズを設定)
+
+```shell
+sudo openssl s_client -connect api.push.apple.com:443 -cert push_cert.pem -key push_key.pem
+```
+で確認する。
