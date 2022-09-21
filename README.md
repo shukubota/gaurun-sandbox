@@ -88,3 +88,19 @@ openssl pkcs12 -nocerts -out push_key.pem -in push_cert.p12 -nodes
 sudo openssl s_client -connect api.push.apple.com:443 -cert push_cert.pem -key push_key.pem
 ```
 で確認する。
+
+### fcm/send
+gaurunでは旧APIを使っているぽい。
+```shell
+curl --location --request POST 'https://fcm.googleapis.com/fcm/send' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: key=AAAAsUoNtEs:APA91bGLZQ8KTr0TPxPqZ3m9IbUw3kyC2u8_y9lxW6KNpaY9dEPLm5b6VNQfQOi2ByqAKivig9WOn-MPhpPaZPBeoeGU8aMCtKml2q02ZCSYcXYpQSGFX0p7CnZacRX78zzGRzeUnefW' \
+--data-raw '{ 
+    "notification": {
+      "body": "This is an FCM notification message!",
+      "time": "FCM Message"
+    },
+    "registration_ids": [ "cCC7Hyz5h0SsqOmwgShcpf:APA91bF9RwxTjJRB4VaaxXS0bnGznunSrpKoBpdMjMCsj_nOwXtnriu6dFmRW-9KKCWXKy5MZ9FVe5ZAKPWOTXibJyO3Bf4pyGlVKTkWvcjMzvSqa5Z3uRd-mgApIdKx0SXZ-OxSVmxC"]
+}'
+```
+これでメッセージが届いた。
