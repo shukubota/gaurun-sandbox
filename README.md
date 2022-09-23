@@ -104,3 +104,9 @@ curl --location --request POST 'https://fcm.googleapis.com/fcm/send' \
 }'
 ```
 これでメッセージが届いた。
+
+## apns
+例
+```shell
+curl -v -d '{"aps":{"alert":"hello"}}' -H "apns-topic: com.shukubota.ohsho-shutsujin" --http2 --cert push_cert_test.pem --key "push_key_test.pem" https://api.push.apple.com/3/device/8E9400D2F93D34554C6075DA13F406725C686B9BA8939A2FBDEBBDF24487E43C
+```
